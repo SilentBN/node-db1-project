@@ -1,4 +1,4 @@
-const db = require("../data/db-config");
+const db = require("../../data/db-config");
 
 exports.checkAccountPayload = (req, res, next) => {
   // DO YOUR MAGIC
