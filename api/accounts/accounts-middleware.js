@@ -11,13 +11,14 @@ exports.checkAccountPayload = (req, res, next) => {
     res
       .status(400)
       .json({ message: "name of account must be between 3 and 100" });
-  } else if (isNaN(budget)) {
+  } else if (isNaN(parseFloat(budget)) || !isFinite(budget)) {
     res.status(400).json({ message: "budget of account must be a number" });
-  } else if (budget < 0 || budget > 1000000) {
+  } else if (parseFloat(budget) < 0 || parseFloat(budget) > 1000000) {
     res
       .status(400)
       .json({ message: "budget of account is too large or too small" });
   } else {
+    req.body.budget = parseFloat(budget);
     next();
   }
 };
